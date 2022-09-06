@@ -18,11 +18,14 @@ public class Contact extends AbstractEntity {
     @NotEmpty
     private String lastName = "";
 
+    @NotEmpty
+    private String nickname = "";
+
     @ManyToOne
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "tournament_id")
     @NotNull
     @JsonIgnoreProperties({"employees"})
-    private Company company;
+    private Tournament tournament;
 
     @NotNull
     @ManyToOne
@@ -34,7 +37,7 @@ public class Contact extends AbstractEntity {
 
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return firstName + " '" + nickname + "' " + lastName;
     }
 
     public String getFirstName() {
@@ -53,12 +56,20 @@ public class Contact extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    public Company getCompany() {
-        return company;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Tournament getTournament() {
+        return tournament;
+    }
+
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
     }
 
     public Status getStatus() {
